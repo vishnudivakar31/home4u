@@ -1,6 +1,6 @@
 # home4u
 Micro service based implementation for hotel management. Customers can list their hotels,
-rooms and tariffs in this app. Customers can login and book rooms based user criterias. 
+rooms and tariffs in this app. Customers can login and book rooms based user criterias.
 
 ## Features:
 
@@ -11,12 +11,12 @@ rooms and tariffs in this app. Customers can login and book rooms based user cri
 - Token based user Authentication
 
 
-###Hotel Management (under development):
+### Hotel Management (under development):
 - Hotel Managers can add hotels, rooms and tariff.
 - Customer booking and search mechanism
 - Rating System
 
-###Payment Management (under development):
+### Payment Management (under development):
 - User payment method creation
 - Autopay Management
 - Bill Generation
