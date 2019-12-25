@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import { resolve } from 'url'
+import Constants from '../utils/Constants'
 
 class UserAuthenticationService {
     
@@ -9,8 +9,7 @@ class UserAuthenticationService {
 
     fetchUserDetails() {
         return new Promise((resolve, reject) => {
-            console.log('token', this.token)
-            Axios.get('http://192.168.1.54:6060/users', {
+            Axios.get(`http://${Constants.USERMANANAGEMENT_URL}/users`, {
                 headers: { Authorization: this.token}
             }).then(response => {
                 resolve(response.data)
