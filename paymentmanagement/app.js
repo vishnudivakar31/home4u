@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send("Home4U")
+    res.send("Home4U Homepage.")
 })
 
 module.exports = app;
