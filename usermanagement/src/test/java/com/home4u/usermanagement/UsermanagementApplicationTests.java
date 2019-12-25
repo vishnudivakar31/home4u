@@ -1,4 +1,4 @@
-package com.movie4u.usermanagement;
+package com.home4u.usermanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.movie4u.usermanagement.security;
+package com.home4u.usermanagement.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.movie4u.usermanagement.security.SecurityConstants.*;
+import static com.home4u.usermanagement.security.SecurityConstants.*;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 

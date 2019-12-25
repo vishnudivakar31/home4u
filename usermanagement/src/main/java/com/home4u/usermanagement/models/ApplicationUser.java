@@ -1,10 +1,10 @@
-package com.movie4u.usermanagement.models;
+package com.home4u.usermanagement.models;
 
 import javax.persistence.*;
 import java.util.Date;
 
 enum UserType {
-    CUSTMOER,
+    CUSTOMER,
     MANAGER
 }
 
@@ -20,18 +20,28 @@ public class ApplicationUser {
     @Column(unique = true)
     private String email;
     private Date dob;
-    private UserType userType;
+    @Enumerated(EnumType.STRING)
+    private UserType usertype;
+    private boolean active;
+    private Date joindate;
+    private Date updateddate;
+    private boolean blocked;
 
     public ApplicationUser() {
     }
 
-    public ApplicationUser(long id, String username, String password, String email, Date dob, UserType userType) {
+    public ApplicationUser(long id, String username, String password, String email, Date dob, UserType usertype,
+                           boolean active, Date joindate, Date updateddate, boolean blocked) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.dob = dob;
-        this.userType = userType;
+        this.usertype = usertype;
+        this.active = active;
+        this.joindate = joindate;
+        this.updateddate = updateddate;
+        this.blocked = blocked;
     }
 
     public long getId() {
@@ -74,12 +84,44 @@ public class ApplicationUser {
         this.dob = dob;
     }
 
-    public UserType getUserType() {
-        return userType;
+    public UserType getUsertype() {
+        return usertype;
     }
 
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setUsertype(UserType usertype) {
+        this.usertype = usertype;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Date getJoindate() {
+        return joindate;
+    }
+
+    public void setJoindate(Date joindate) {
+        this.joindate = joindate;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
     @Override
@@ -90,7 +132,11 @@ public class ApplicationUser {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
-                ", userType=" + userType +
+                ", usertype=" + usertype +
+                ", active=" + active +
+                ", joindate=" + joindate +
+                ", updateddate=" + updateddate +
+                ", blocked=" + blocked +
                 '}';
     }
 }

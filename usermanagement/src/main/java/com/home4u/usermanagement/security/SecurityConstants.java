@@ -1,4 +1,4 @@
-package com.movie4u.usermanagement.security;
+package com.home4u.usermanagement.security;
 
 public class SecurityConstants {
     public static final String SECRET = "home4u_secret_key2019";
