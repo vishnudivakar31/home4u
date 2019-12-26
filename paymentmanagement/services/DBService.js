@@ -16,12 +16,15 @@ class DBService {
 
     executeQuery(query) {
         return new Promise((resolve, reject) => {
-            this.client.query(query, (err, res) => {
-                if(err) {
-                    reject(err)
-                } else {
+            this.client.query(query)
+            .then(res => {
+                if(res.rowCount !== null) {
                     resolve(res)
                 }
+            })
+            .catch(err => {
+                console.error(err)
+                reject(err)
             })
         })
     }

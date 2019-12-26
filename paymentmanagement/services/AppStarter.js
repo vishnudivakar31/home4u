@@ -8,8 +8,10 @@ class AppStarter {
     }
 
     initialize() {
-        this.dbService.executeQuery(Queries.CREATE_PAYMENT)
-        this.dbService.executeQuery(Queries.CREATE_BILLING)
+        let initQueries = Queries.INIT_QUERIES
+        for(let query in initQueries) {
+            this.dbService.executeQuery(initQueries[query])
+        }
     }
 }
 
