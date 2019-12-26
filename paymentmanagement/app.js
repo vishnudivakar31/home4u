@@ -1,6 +1,7 @@
 import PaymentRouter from './controllers/PaymentRegistrationController'
 import UserAuthenticationService from './services/UserAuthenticationService'
 import AppUser from './models/AppUser'
+import AppStarter from './services/AppStarter'
 
 var express = require('express');
 var cookieParser = require('cookie-parser');
@@ -38,9 +39,8 @@ app.use(function(req, res, next) {
     })
 })
 
-app.get('/', (req, res) => {
-    res.send("Home4U Homepage.")
-})
+let appStarter = new AppStarter()
+appStarter.initialize()
 
 app.use('/payment', PaymentRouter)
 
