@@ -67,6 +67,15 @@ class PaymentServices {
             })
         })
     }
+
+    getFromTable() {
+        return new Promise((resolve, reject) => {
+            let query = this.paymentDetails.getQuery()
+            this.dbService.executeQuery(query)
+            .then(res => resolve(res))
+            .catch(err => reject(err))
+        })
+    }
 }
 
 export default PaymentServices

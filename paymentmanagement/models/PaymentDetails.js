@@ -30,6 +30,10 @@ class PaymentDetails {
     reviveQuery() {
         return `${Queries.REVIVE_PAYMENTDETAILS}${this.user_id};`
     }
+
+    getQuery() {
+        return `${Queries.GET_PAYMENTDETAILS}${this.user_id};`
+    }
 }
 
 export default PaymentDetails

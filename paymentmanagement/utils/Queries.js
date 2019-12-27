@@ -32,7 +32,13 @@ const Queries = {
     INSERT_TO_PAYMENTDETAILS: `INSERT INTO paymentdetails VALUES`,
     UPDATE_PAYMENTDETAILS: `UPDATE paymentdetails set`,
     DELETE_PAYMENTDETAILS: `UPDATE paymentdetails set active=false where user_id=`,
-    REVIVE_PAYMENTDETAILS: `UPDATE paymentdetails set active=true where user_id=`
+    REVIVE_PAYMENTDETAILS: `UPDATE paymentdetails set active=true where user_id=`,
+    GET_PAYMENTDETAILS: `SELECT * FROM paymentdetails where user_id=`,
+    INSERT_TO_AUTOPAY: `INSERT INTO autopay VALUES`,
+    GET_AUTOPAY_DETAILS: `SELECT * FROM autopay where payment_id=`,
+    UPDATE_AUTOPAY_DETAILS: `UPDATE autopay set`,
+    DELETE_AUTOPAY_DETAILS: `UPDATE autopay set active=false where payment_id=`,
+    REVIVE_AUTOPAY_DETAILS: `UPDATE autopay set active=true where payment_id=`
 }
 
 module.exports = Queries

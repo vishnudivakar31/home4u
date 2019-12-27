@@ -2,6 +2,7 @@ import PaymentRouter from './controllers/PaymentRegistrationController'
 import UserAuthenticationService from './services/UserAuthenticationService'
 import AppUser from './models/AppUser'
 import AppStarter from './services/AppStarter'
+import AutopayRouter from './controllers/AutopayController'
 
 var express = require('express');
 var cookieParser = require('cookie-parser');
@@ -43,5 +44,6 @@ let appStarter = new AppStarter()
 appStarter.initialize()
 
 app.use('/payment', PaymentRouter)
+app.use('/autopay', AutopayRouter)
 
 module.exports = app;

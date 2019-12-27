@@ -12,6 +12,14 @@ router.post('/registration', (req, res) => {
     .catch(error => res.status(500).send(error))
 })
 
+router.get('', (req, res) => {
+    let appUser = req.app.get('appUser')
+    let paymentService = new PaymentService(appUser, req.body)
+    paymentService.getFromTable()
+    .then(result => res.status(200).send(result.rows[0]))
+    .catch(error => res.status(500).send(error))
+})
+
 router.put('', (req, res) => {
     let appUser = req.app.get('appUser')
     let paymentService = new PaymentService(appUser, req.body)
@@ -28,7 +36,7 @@ router.delete('', (req, res) => {
     .catch(error => res.status(500).send(error))
 })
 
-router.get('/registration/revive', (req, res) => {
+router.get('/revive', (req, res) => {
     let appUser = req.app.get('appUser')
     let paymentService = new PaymentService(appUser, req.body)
     paymentService.reviveTable()
