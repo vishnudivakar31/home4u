@@ -1,12 +1,9 @@
 package com.home4u.hotelmanagement.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Breakfast {
+public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -14,16 +11,19 @@ public class Breakfast {
     private double price;
     private long hotelId;
     private boolean active;
+    @Enumerated(EnumType.STRING)
+    private FoodType foodType;
 
-    public Breakfast() {
+    public Food() {
     }
 
-    public Breakfast(long id, String name, double price, long hotelId, boolean active) {
+    public Food(long id, String name, double price, long hotelId, boolean active, FoodType foodType) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.hotelId = hotelId;
         this.active = active;
+        this.foodType = foodType;
     }
 
     public long getId() {
@@ -64,5 +64,13 @@ public class Breakfast {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public FoodType getFoodType() {
+        return foodType;
+    }
+
+    public void setFoodType(FoodType foodType) {
+        this.foodType = foodType;
     }
 }

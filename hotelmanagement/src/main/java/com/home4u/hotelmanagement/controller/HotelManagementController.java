@@ -1,9 +1,8 @@
 package com.home4u.hotelmanagement.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.home4u.hotelmanagement.models.AppUser;
-import com.home4u.hotelmanagement.models.Hotel;
-import com.home4u.hotelmanagement.models.Room;
+import com.home4u.hotelmanagement.models.*;
+import com.home4u.hotelmanagement.service.FoodService;
 import com.home4u.hotelmanagement.service.HotelService;
 import com.home4u.hotelmanagement.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,8 @@ public class HotelManagementController {
     private HotelService hotelService;
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private FoodService foodService;
 
     @GetMapping
     public ResponseEntity<Object> getHotels(HttpServletRequest request) {
@@ -120,4 +121,10 @@ public class HotelManagementController {
             return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/{id}/food")
+    public Object saveBreakfast(@PathVariable("id") long hotelId, @RequestBody Food food) {
+        return foodService.saveFood(food, hotelId);
+    }
+
 }
