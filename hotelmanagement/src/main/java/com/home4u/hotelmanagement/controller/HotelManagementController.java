@@ -132,4 +132,52 @@ public class HotelManagementController {
         return foodService.fetchFood(hotelId, foodType);
     }
 
+    @GetMapping("/{id}/food/{foodId}")
+    public ResponseEntity getFoodById(@PathVariable("id") long hotelId, @PathVariable("foodId") long foodId) {
+        try {
+            Food food = foodService.getFood(hotelId, foodId);
+            return new ResponseEntity(food, HttpStatus.OK);
+        } catch (NullPointerException e) {
+            return new ResponseEntity("", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/{id}/food/{foodId}")
+    public ResponseEntity updateFoodById(@PathVariable("id") long hotelId, @PathVariable("foodId") long foodId, @RequestBody Food modifiedFood) {
+        try {
+            Food food = foodService.updateFood(hotelId, foodId, modifiedFood);
+            return new ResponseEntity(food, HttpStatus.OK);
+        } catch (NullPointerException e) {
+            return new ResponseEntity("", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{id}/food/{foodId}")
+    public ResponseEntity deleteFoodById(@PathVariable("id") long hotelId, @PathVariable("foodId") long foodId) {
+        try {
+            Food food = foodService.setActivitiy(hotelId, foodId, false);
+            return new ResponseEntity(food, HttpStatus.OK);
+        } catch (NullPointerException e) {
+            return new ResponseEntity("", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id}/food/{foodId}/revive")
+    public ResponseEntity reviveFoodById(@PathVariable("id") long hotelId, @PathVariable("foodId") long foodId) {
+        try {
+            Food food = foodService.setActivitiy(hotelId, foodId, true);
+            return new ResponseEntity(food, HttpStatus.OK);
+        } catch (NullPointerException e) {
+            return new ResponseEntity("", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
