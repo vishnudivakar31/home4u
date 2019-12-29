@@ -43,7 +43,11 @@ public class UserAuthFilter implements Filter {
             request.setAttribute(APPUSER_TAG, userMap.getBody());
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (Exception e) {
-            ((HttpServletResponse) servletResponse).sendError(HttpStatus.UNAUTHORIZED.value());
+            if(e.getMessage().equals("403 : [no body]")) {
+                ((HttpServletResponse) servletResponse).sendError(HttpStatus.UNAUTHORIZED.value());
+            } else {
+                ((HttpServletResponse) servletResponse).sendError(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            }
         }
     }
 }
