@@ -123,8 +123,13 @@ public class HotelManagementController {
     }
 
     @PostMapping("/{id}/food")
-    public Object saveBreakfast(@PathVariable("id") long hotelId, @RequestBody Food food) {
+    public Food saveFood(@PathVariable("id") long hotelId, @RequestBody Food food) {
         return foodService.saveFood(food, hotelId);
+    }
+
+    @GetMapping("/{id}/food")
+    public List<Food> getFood(@PathVariable("id") long hotelId, @RequestParam("foodType") FoodType foodType) {
+        return foodService.fetchFood(hotelId, foodType);
     }
 
 }

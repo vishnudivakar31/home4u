@@ -6,6 +6,9 @@ import com.home4u.hotelmanagement.repositories.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class FoodService {
     @Autowired
@@ -18,4 +21,12 @@ public class FoodService {
         return food;
     }
 
+    public List<Food> fetchFood(long hotelId, FoodType foodType) {
+        List<Food> foods = foodRepository.findAllByHotelId(hotelId);
+        List<Food> result = foods
+                .stream()
+                .filter(item -> item.getFoodType().equals(foodType))
+                .collect(Collectors.toList());
+        return result;
+    }
 }
