@@ -96,4 +96,28 @@ public class HotelManagementController {
             return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping ("/{id}/rooms/{roomId}")
+    public ResponseEntity deleteRoomById(@PathVariable("id") long hotelId, @PathVariable("roomId") long roomId) {
+        try {
+            Room room = roomService.setRoomActivity(hotelId, roomId, false);
+            return new ResponseEntity(room, HttpStatus.OK);
+        } catch (NullPointerException e) {
+            return new ResponseEntity("", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping ("/{id}/rooms/{roomId}/revive")
+    public ResponseEntity reviveRoomById(@PathVariable("id") long hotelId, @PathVariable("roomId") long roomId) {
+        try {
+            Room room = roomService.setRoomActivity(hotelId, roomId, true);
+            return new ResponseEntity(room, HttpStatus.OK);
+        } catch (NullPointerException e) {
+            return new ResponseEntity("", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -51,5 +51,12 @@ public class RoomService {
         roomRepository.save(room);
         return room;
     }
+
+    public Room setRoomActivity(Long hotelId, Long roomId, Boolean status) {
+        Room room = findRoomById(hotelId, roomId);
+        room.setActive(status);
+        roomRepository.save(room);
+        return room;
+    }
 }
 
