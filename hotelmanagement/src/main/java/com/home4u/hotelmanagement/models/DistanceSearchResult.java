@@ -1,6 +1,7 @@
 package com.home4u.hotelmanagement.models;
 
 import java.util.Date;
+import java.util.List;
 
 public class DistanceSearchResult {
     private Double distance;
@@ -13,11 +14,12 @@ public class DistanceSearchResult {
     private HotelType hotel_type;
     private Boolean active;
     private Date listed_since;
+    private List<Room> roomList;
 
     public DistanceSearchResult() {
     }
 
-    public DistanceSearchResult(Double distance, long id, long user_id, String name, int rooms, double lat, double lon, HotelType hotel_type, Boolean active, Date listed_since) {
+    public DistanceSearchResult(Double distance, long id, long user_id, String name, int rooms, double lat, double lon, HotelType hotel_type, Boolean active, Date listed_since, List<Room> roomList) {
         this.distance = distance;
         this.id = id;
         this.user_id = user_id;
@@ -28,6 +30,7 @@ public class DistanceSearchResult {
         this.hotel_type = hotel_type;
         this.active = active;
         this.listed_since = listed_since;
+        this.roomList = roomList;
     }
 
     public Double getDistance() {
@@ -108,5 +111,13 @@ public class DistanceSearchResult {
 
     public void setListed_since(Date listed_since) {
         this.listed_since = listed_since;
+    }
+
+    public List<Room> getRoomList() {
+        return roomList;
+    }
+
+    public void setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
     }
 }
