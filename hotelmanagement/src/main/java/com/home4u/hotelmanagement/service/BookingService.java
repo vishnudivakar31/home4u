@@ -8,13 +8,11 @@ import com.home4u.hotelmanagement.models.Room;
 import com.home4u.hotelmanagement.repositories.BookingsRepository;
 import com.home4u.hotelmanagement.repositories.HotelRepository;
 import com.home4u.hotelmanagement.repositories.RoomRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,5 +63,17 @@ public class BookingService {
         bookings.setActive(true);
         bookingsRepository.save(bookings);
         return bookings;
+    }
+
+    public Bookings cancelBooking(long bookingId, AppUser user) {
+        Optional<Bookings> bookings = bookingsRepository.findById(bookingId);
+        if(bookings.isPresent() && bookings.get().getUserId() == user.getId()) {
+            Bookings booking = bookings.get();
+            booking.setActive(false);
+            bookingsRepository.save(booking);
+            return booking;
+        } else {
+            throw new NullPointerException();
+        }
     }
 }

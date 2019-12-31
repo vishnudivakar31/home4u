@@ -46,4 +46,11 @@ public class BookingManagementController {
         AppUser user = new ObjectMapper().convertValue(request.getAttribute(APPUSER_TAG), AppUser.class);
         return bookingService.bookHotel(user, bookings);
     }
+
+    @DeleteMapping("/book/{id}")
+    public Bookings cancelBooking(HttpServletRequest request, @PathVariable("id") long id) {
+        AppUser user = new ObjectMapper().convertValue(request.getAttribute(APPUSER_TAG), AppUser.class);
+        return bookingService.cancelBooking(id, user);
+    }
+
 }
